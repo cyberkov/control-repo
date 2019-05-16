@@ -19,4 +19,5 @@ RUN bundle exec onceover init
 ADD ubuntu16.puppettest.apa.at.json spec/factsets/ubuntu16.puppettest.apa.at.json
 RUN puppet resource file_line onceoveryaml path=/controlrepo/spec/onceover.yaml line="  - ubuntu16.puppettest.apa.at" after='^nodes:'
 
-CMD bundle exec onceover run diff --trace -f $CI_COMMIT_REF_NAME -t production --debug -n ubuntu16.puppettest.apa.at,Debian-6.0.10-64 -c role::database_server --debug
+RUN bundle exec onceover run diff --trace -f $CI_COMMIT_REF_NAME -t production --debug -n "ubuntu16.puppettest.apa.at,Debian-6.0.10-64" -c role::database_server --debug
+CMD /bin/bash
